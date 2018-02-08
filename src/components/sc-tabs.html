@@ -1,0 +1,51 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tab.html">
+
+<link rel="import" href="../styles/shared-styles.html">
+
+<dom-module id="sc-tabs">
+  <template>
+    <style include="shared-styles">
+      :host {
+
+      }
+
+    </style>
+    <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+      <paper-tabs selected="{{selectedIndex}}" scrollable fit-container>
+        <paper-tab name="search">Search</paper-tab>
+        <paper-tab name="queue">My Queue</paper-tab>
+        <paper-tab name="about">About me</paper-tab>
+      </paper-tabs>
+    </iron-selector>
+
+  </template>
+
+  <script>
+    class scTabs extends Polymer.Element {
+      static get is() { return 'sc-tabs'; }
+
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            observer: '_show'
+          },
+          rootPath: {
+            type: String,
+            observer: '_show'
+          }
+        }
+      }
+
+      _show() {
+        console.log(this.type);
+        console.log(this.rootPath);
+      }
+
+    }
+
+    window.customElements.define(scTabs.is, scTabs);
+  </script>
+</dom-module>
